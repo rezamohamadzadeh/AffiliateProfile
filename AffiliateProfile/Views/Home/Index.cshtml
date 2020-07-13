@@ -1,0 +1,294 @@
+﻿@model IEnumerable<Tb_Sell>
+@{
+    ViewData["Title"] = "ShowAffiliateDetail";
+}
+
+<div class="content-wrapper p-0 pt-4">
+    <div class="welcome-message" style="background:#db3446;">
+        <div class="d-lg-flex justify-content-between align-items-center">
+
+            <div class="pl-4">
+                <h2 class="text-white font-weight-bold mb-3">Welcome to Swealthlabs Affiliates</h2>
+                <p class="pb-0 mb-1">
+                    Congratulations! Your Swealthlabs affiliates account has been setup and you are ready to start sending traffic.
+
+                </p>
+                <p>Check Offers Page to see your unique URL</p>
+            </div>
+            <div class="pl-4">
+                <button type="button" class="btn btn-primary" id="skip-mesages" style="background:#ae1f2f;">Skip</button>
+                @*<button type="button" class="btn btn-success ml-lg-0 ml-xl-2 ml-2 ml-l mt-lg-2 mt-xl-0">Setup Manually</button>*@
+            </div>
+        </div>
+    </div>
+    <div class="d-sm-flex justify-content-between align-items-center border-bottom">
+        <div class="d-flex align-items-center">
+            <ul class="nav nav-tabs home-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active pl-2 pl-lg-0" id="Dashboards-tab" data-toggle="tab" href="#Dashboards-1" role="tab" aria-controls="Dashboards-1" aria-selected="true">Dashboard</a>
+                </li>
+            </ul>
+        </div>
+        <div class="mr-3 pr-1 mr-lg-0 pr-lg-0 ml-3 pl-1 mb-3 mb-lg-0">
+            <div class="dropdown">
+                <button type="button"  class="btn btn-outline-light btn-icon-text dropdown-toggle" data-toggle="dropdown" id="SelectDateFilter" aria-expanded="false">
+                    <i class="mdi mdi-calendar-blank btn-icon-prepend"></i>
+                    <span id="FilterValue">Show All</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-left custom-drop-down">
+                    <button class="dropdown-item" onclick="GetDashboardValues(0,'Show All')">
+                        <i class="mdi mdi-calendar-blank"></i> Show All
+                    </button>
+                    <button class="dropdown-item" onclick="GetDashboardValues(365,'This Year')">
+                        <i class="mdi mdi-calendar-blank"></i> This Year
+                    </button>
+                    <button class="dropdown-item" onclick="GetDashboardValues(30,'Current Month')">
+                        <i class="mdi mdi-calendar-blank"></i> Current Month
+                    </button>
+                    <button class="dropdown-item" onclick="GetDashboardValues(7,'Week')">
+                        <i class="mdi mdi-calendar-blank"></i> Week
+                    </button>
+                    <button class="dropdown-item" onclick="GetDashboardValues(1,'Today')">
+                        <i class="mdi mdi-calendar-blank"></i> Today
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="tab-content home-tab-content">
+        <div class="tab-pane fade show active" id="Dashboards-1" role="tabpanel" aria-labelledby="Dashboards-tab">
+            <div class="d-sm-flex justify-content-between align-items-center my-3">
+                <h3 class="text-dark font-weight-medium">Activities</h3>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="container text-center">
+                                <div id="g2" class="gauge"></div>
+                                <span>Conversion Rate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="custom-fieldset mb-4">
+                                <div class="clearfix">
+                                    <label class="">Registeration #</label>
+                                </div>
+                                <div class="d-lg-flex align-items-center text-dark">
+                                    <i class="mdi mdi-inbox-arrow-up mr-3 mdi-36px animate-icon"></i>
+                                    <div>
+                                        <h2 class="mb-0 mt-2 mt-sm-0" id="Registered"></h2>
+                                        <div class="text-light d-flex align-items-center"><span class="text-success mr-2 font-weight-medium d-flex align-items-center"></span>All complete Registration</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="custom-fieldset mt-3">
+                                <div class="clearfix">
+                                    <label> Product Sold #</label>
+                                </div>
+                                <div class="d-lg-flex align-items-center text-dark">
+                                    <i class="mdi mdi-cart-outline mr-3 mdi-36px animate-icon"></i>
+                                    <div>
+                                        <h2 class="mb-0 mt-2 mt-sm-0" id="Sells"></h2>
+                                        <div class="text-light d-flex align-items-center">Number of Succefully Paid</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="text-dark font-weight-medium">Total sold value</p>
+                                    <h1 class="text-dark  mt-3" id="sumSell"></h1>
+                                </div>
+                                <div class="col-md-6">
+                                    <canvas id="earnings" class=" mt-3"></canvas>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-md-6 mb-4 mb-sm-0">
+                                    <p class="text-dark">Affiliate Comission $</p>
+                                    <h2 class="text-dark  mt-2" id="CommisionAmount"></h2>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="text-dark">Affiliate Comission %</p>
+                                    <h2 class="text-dark  mt-2" id="Comision"></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-0">Clicks</h4>
+                            <div class="d-xl-flex justify-content-between mt-3 mb-3 align-items-center">
+                            </div>
+                            <div class="row mt-4 d-flex align-items-center">
+                                <div class="col-xl-9">
+                                    <h1 class="font-weight-medium m-0 text-dark" id="Clicks"></h1>
+                                </div>
+
+                                <div class="col-xl-3"><canvas id="total-conversion"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-0">Active Offers</h4>
+                            <div class="d-xl-flex justify-content-between mt-3 mb-3 align-items-center">
+                            </div>
+                            <div class="row mt-4 d-flex align-items-center">
+                                <div class="col-xl-9">
+                                    <h1 class="font-weight-medium m-0 text-dark">1</h1>
+                                </div>
+
+                                <div class="col-xl-3"><canvas id="avrg-order-quantity"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-0">Sub Affiliates</h4>
+                            <div class="d-xl-flex justify-content-between mt-3 mb-3 align-items-center">
+                            </div>
+                            <div class="row mt-4 d-flex align-items-center">
+                                <div class="col-xl-9">
+                                    <h1 class="font-weight-medium m-0 text-dark">0</h1>
+                                </div>
+
+                                <div class="col-xl-3"><canvas id="percentage"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-sm-flex justify-content-between align-items-center">
+                                <h4 class="card-title">Last  5 Leads & Sales</h4>
+                                <div class="d-flex">
+                                    <a type="button" class="btn btn-primary ml-3  my-2 my-lg-0" style="background:#ae1f2f;" href="/AdminPanel/Affiliate/ShowAllAffiliateSells">Full Report</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="table-responsive">
+                                        <table class="table" >
+                                            <thead>
+                                                <tr>
+                                                    <th>Order #</th>
+                                                    <th>Name</th>
+                                                    <th>Date</th>
+                                                    <th>country</th>
+                                                    <th>Product</th>
+                                                    <th>Price</th>
+                                                    <th>Offer</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="orderTable">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Scripts{
+    <script src="~/Affiliate/vendors/justgage/raphael-2.1.4.min.js"></script>
+    <script src="~/Affiliate/vendors/justgage/justgage.js"></script>
+    <script>
+        
+        $(document).ready(function () {
+            GetDashboardValues();
+            
+        });
+        function GetDashboardValues(filterValue,SelectedFilter) {
+            $("#Clicks").html('');
+            $("#Comision").html('');
+            $("#CommisionAmount").html('');
+            $("#sumSell").html('');
+            $("#Registered").html('');
+            $("#Sells").html('');
+
+            jQuery.ajax({
+                url: "/Home/GetDashboardActivities",
+                datatype: "json",
+                method: "POST",
+                data: { filterValue: filterValue },
+                success: function (data) {
+                    $("#Clicks").html(data.Clicks);
+                    $("#Comision").html(data.Comistion);
+                    $("#CommisionAmount").html(data.CommisionAmount);
+                    $("#sumSell").html(data.SumSell);
+                    $("#Registered").html(data.Registered);
+                    $("#Sells").html(data.Sells);
+
+                    var counter = 1;
+                    var row = ``;
+                    for (var i = 0; i < data.AllAffiliatesells.length; i++) {
+                    }
+                    $.each(data.AllAffiliatesells, function (result, value) {
+                        row += `<tr>
+                                    <td>` + counter + `</td>
+                                    <td>` + value.FirstName + ' ' + value.LastName + `</td>
+                                    <td>` + value.CreateAt + `</td>
+                                    <td>` + value.Country + `</td>
+                                    <td>` + value.ProductName + `</td>
+                                    <td>` + value.Price + `</td>
+                                    <td>` + value.FromUrl + `</td>
+                                    <td>` + value.PayStatus + `</td>
+                                <tr>`;
+                        counter++;
+                    })
+                    $("#orderTable").html(row);
+                    $("#g2").html('');
+                    
+                    g2 = new JustGage({
+                        id: "g2",
+                        value: data.Conversion,
+                        min: 0,
+                        max: 100,
+                        donut: true,
+                        gaugeWidthScale: 0.6,
+                        counter: true,
+                        hideInnerShadow: true
+                    });
+                    if (SelectedFilter != 'undefined') {
+                        $("#FilterValue").html(SelectedFilter);
+                    }
+                },
+                error: function () {
+
+                }
+            });
+        }
+
+    </script>
+}

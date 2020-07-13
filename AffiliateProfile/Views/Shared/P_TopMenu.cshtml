@@ -1,0 +1,54 @@
+﻿<nav class="bottom-navbar">
+    <div class="container">
+        <ul class="nav page-navigation">
+            <li class="nav-item">
+                <a class="nav-link" asp-action="Index" asp-controller="Home">
+                    <i class="mdi mdi-view-dashboard-outline menu-icon"></i>
+                    <span class="menu-title">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="Index" asp-controller="AffiliateSell">
+                    <i class="mdi mdi-airplay menu-icon"></i>
+                    <span class="menu-title">Lead/Sales</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="Index" asp-controller="Customers">
+                    <i class="mdi mdi-account-multiple menu-icon"></i>
+                    <span class="menu-title">My Customers</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="mdi mdi-printer menu-icon"></i>
+                    <span class="menu-title">Reports</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="submenu">
+                    <ul class="submenu-item">
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="add-ajax-modal" href="javascript:void(0);" data-url="@Url.Action("FilterAffiliateSell","Report")">
+                                <i class="mdi mdi-printer menu-icon"></i>
+                                <span class="menu-title">Affiliate Sell</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="ConversionRatePrintPage" target="_blank" asp-controller="Report">
+                                <i class="mdi mdi-printer menu-icon"></i>
+                                <span class="menu-title">Conversion Rate</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>            
+            <li class="nav-item">
+                <a asp-action="Index" asp-controller="Offers" class="nav-link">
+                    <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+                    <span class="menu-title">Offers</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,15 @@
+﻿@using Stimulsoft.Report.Mvc
+
+@{
+    ViewData["Title"] = "Print AffiliateSell";
+    Layout = null;
+}
+
+@Html.StiNetCoreViewer(new StiNetCoreViewerOptions()
+{
+    Actions = {
+        GetReport = "AffiliateSell",
+        ViewerEvent = "ViewerEvent"
+
+    }
+})

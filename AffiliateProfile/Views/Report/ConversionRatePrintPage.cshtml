@@ -1,0 +1,14 @@
+﻿@using Stimulsoft.Report.Mvc
+
+@{
+    ViewData["Title"] = "Print Conversion Rate";
+    Layout = null;
+}
+
+@Html.StiNetCoreViewer(new StiNetCoreViewerOptions()
+{
+    Actions = {
+        GetReport = "ConversionRate",
+        ViewerEvent = "ViewerEvent"
+    }
+})

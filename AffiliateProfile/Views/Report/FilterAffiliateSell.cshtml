@@ -1,0 +1,94 @@
+﻿@model SellReportDto
+@{
+    ViewData["Title"] = "FilterAffiliateSell";
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/Affiliate/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+
+<div id="mymodal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white">Filter affiliate sell by date</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form method="post" asp-action="AffiliateSellPrintPage" asp-controller="Report">
+                    
+                    <div class="col-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <label class="form-group-label">
+                                    <input type="checkbox" class="font-weight-bold" asp-for="SkipDate">
+                                    SkipDate
+                                </label>
+                                <br />
+
+                                <h4 class="card-title">Date range</h4>
+
+                                <p class="card-description">Select date range</p>
+                                <div class="input-group input-daterange d-flex align-items-center">
+                                    <input type="text" asp-for="StartDate" class="form-control">
+                                    <div class="input-group-addon mx-4">to</div>
+                                    <input type="text" asp-for="EndDate" class="form-control" value="2012-04-19">
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="form-group-label">
+                                                <input type="radio" asp-for="FilterType" value="All" checked>
+                                                All
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="form-group-label">
+                                                <input type="radio" asp-for="FilterType" value="OnlyRegister">
+                                                OnlyRegister
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="form-group-label">
+                                                <input type="radio" asp-for="FilterType" value="Sells">
+                                                Sells
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-icon-text float-right">
+                        <i class="mdi mdi-printer btn-icon-prepend"></i>
+                        Report
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Affiliate/vendors/js/vendor.bundle.base.js"></script>
+<script src="~/js/dashboard.js"></script>
+<script src="~/Affiliate/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="~/js/formpickers.js"></script>
+<script>
+    $('#SkipDate').change(function () {
+        if (this.checked) {
+            $("#StartDate").prop("disabled", true);
+            $("#EndDate").prop("disabled", true);
+            $("#StartDate").val(null);
+            $("#EndDate").val(null);
+        }
+        else {
+            $("#StartDate").prop("disabled", false);
+            $("#EndDate").prop("disabled", false);
+
+        }
+    });
+</script>
