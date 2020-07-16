@@ -41,6 +41,7 @@ namespace AffiliateProfile
                     options.SerializerSettings.ContractResolver = new DefaultContractResolver();
                 });
             services.AddDbContext<ApplicationDbContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("Local")));
+            services.AddHttpClient();
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
