@@ -33,6 +33,9 @@ namespace AffiliateProfile
             services.AddHttpClient();
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation()
+                .AddJsonOptions(options => {
+                    options.JsonSerializerOptions.IgnoreNullValues = true;
+                })
                 .AddNewtonsoftJson(options =>
                 {
                     options.SerializerSettings.ContractResolver = new DefaultContractResolver();
