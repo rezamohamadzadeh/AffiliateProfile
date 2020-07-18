@@ -551,6 +551,9 @@ namespace DAL.Migrations
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Rank")
+                        .HasColumnType("int");
+
                     b.Property<string>("TransActionId")
                         .HasColumnType("nvarchar(max)");
 

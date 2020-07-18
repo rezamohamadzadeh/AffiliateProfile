@@ -75,6 +75,18 @@ namespace AffiliateProfile.Controllers
                 if (sells == null)
                     return NotFound(ErrorResult("The Affiliate Sells not found"));
 
+
+                var setBlackListAdsrress = url + "/api/UserRateLimitApi/SetUserInBlackList?UserIP=" + IP + "&UserId=" + UserId;
+
+                HttpResponseMessage message = await client.GetAsync(setBlackListAdsrress);
+                HttpContext.Response.ContentType = "application/json";
+
+                if (!message.IsSuccessStatusCode)
+                {
+                    var result = await message.Content.ReadAsAsync<JsonResultContent>();
+                    return BadRequest(result);
+                }
+
                 return Ok(SuccessResult(sells));
             }
             catch (Exception ex)

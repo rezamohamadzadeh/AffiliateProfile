@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAL.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -41,7 +41,8 @@ namespace DAL.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: false)
+                    IsActive = table.Column<bool>(nullable: false),
+                    Image = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -126,6 +127,7 @@ namespace DAL.Migrations
                     Price = table.Column<double>(nullable: false),
                     ProductName = table.Column<string>(nullable: true),
                     TransActionId = table.Column<string>(nullable: true),
+                    Rank = table.Column<int>(nullable: false),
                     DiliveryStatus = table.Column<int>(nullable: false),
                     PayStatus = table.Column<int>(nullable: false),
                     CreateAt = table.Column<DateTime>(nullable: false)
@@ -451,23 +453,12 @@ namespace DAL.Migrations
                     AnswerDateTime = table.Column<DateTime>(nullable: true),
                     AnswerUserId = table.Column<string>(nullable: true),
                     SupportPosition = table.Column<int>(nullable: false),
-                    File = table.Column<string>(nullable: true)
+                    File = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tb_Supports", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Tb_Supports_AspNetUsers_AnswerUserId",
-                        column: x => x.AnswerUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Tb_Supports_AspNetUsers_SenderUserId",
-                        column: x => x.SenderUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Tb_Supports_Tb_SupportTypes_TypeId",
                         column: x => x.TypeId,
@@ -645,16 +636,6 @@ namespace DAL.Migrations
                 name: "IX_Tb_ProductDetails_ProductId",
                 table: "Tb_ProductDetails",
                 column: "ProductId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tb_Supports_AnswerUserId",
-                table: "Tb_Supports",
-                column: "AnswerUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tb_Supports_SenderUserId",
-                table: "Tb_Supports",
-                column: "SenderUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tb_Supports_TypeId",

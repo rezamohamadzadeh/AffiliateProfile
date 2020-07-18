@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200623075741_init")]
-    partial class init
+    [Migration("20200718041844_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,6 +39,9 @@ namespace DAL.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -550,6 +553,9 @@ namespace DAL.Migrations
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Rank")
+                        .HasColumnType("int");
+
                     b.Property<string>("TransActionId")
                         .HasColumnType("nvarchar(max)");
 
@@ -595,7 +601,10 @@ namespace DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AnswerUserId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("File")
                         .HasColumnType("nvarchar(max)");
@@ -607,7 +616,7 @@ namespace DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("SenderUserId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SupportPosition")
                         .HasColumnType("int");
@@ -616,10 +625,6 @@ namespace DAL.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AnswerUserId");
-
-                    b.HasIndex("SenderUserId");
 
                     b.HasIndex("TypeId");
 
@@ -900,14 +905,6 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Models.Tb_Support", b =>
                 {
-                    b.HasOne("DAL.Models.ApplicationUser", "AnswerUser")
-                        .WithMany()
-                        .HasForeignKey("AnswerUserId");
-
-                    b.HasOne("DAL.Models.ApplicationUser", "SenderUser")
-                        .WithMany()
-                        .HasForeignKey("SenderUserId");
-
                     b.HasOne("DAL.Models.Tb_SupportType", "SupportType")
                         .WithMany()
                         .HasForeignKey("TypeId")

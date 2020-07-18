@@ -8,6 +8,11 @@ namespace DAL.Models
 {
     public class Tb_Sell
     {
+        public Tb_Sell()
+        {
+            Rank = 0;
+        }
+
         [Key]
         public int Id { get; set; }
         public string AffiliateCode { get; set; }
@@ -26,6 +31,7 @@ namespace DAL.Models
         public double Price { get; set; }
         public string ProductName { get; set; }
         public string TransActionId { get; set; }
+        public int Rank { get; set; }
 
         public DiliveryStatus DiliveryStatus { get; set; }
         public PayStatus PayStatus { get; set; }

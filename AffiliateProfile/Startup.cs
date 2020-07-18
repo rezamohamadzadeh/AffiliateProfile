@@ -89,7 +89,6 @@ namespace AffiliateProfile
             var contentRoot = env.ContentRootPath;
             var licenseFile = System.IO.Path.Combine(contentRoot, "Reports", "license.key");
             StiLicense.LoadFromFile(licenseFile);
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
