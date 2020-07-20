@@ -39,7 +39,11 @@ namespace AffiliateProfile.Controllers
             Configuration = configuration;
         }
 
-
+        /// <summary>
+        /// Get affiliate sells by userId 
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
         public async Task<IActionResult> GetAffiliateSells([FromQuery] string UserId)
         {
             try
@@ -51,6 +55,7 @@ namespace AffiliateProfile.Controllers
                 var apiAddress = url + "/api/UserRateLimitApi/CheckUserLimit?UserIP=" + IP + "&UserId=" + UserId;
                 var client = _clientFactory.CreateClient();
 
+                // check user ip in black list
                 HttpResponseMessage messages = await client.GetAsync(apiAddress);
                 HttpContext.Response.ContentType = "application/json";
 
@@ -78,6 +83,7 @@ namespace AffiliateProfile.Controllers
 
                 var setBlackListAdsrress = url + "/api/UserRateLimitApi/SetUserInBlackList?UserIP=" + IP + "&UserId=" + UserId;
 
+                // if mission was successfully, user ip added to black list for 10 min
                 HttpResponseMessage message = await client.GetAsync(setBlackListAdsrress);
                 HttpContext.Response.ContentType = "application/json";
 

@@ -5,9 +5,9 @@ namespace AffiliateProfile.Models.AccountViewModels
 {
     public class ForgotPasswordViewModel
     {
-        [Required(ErrorMessage = "لطفا فیلد {0} را وارد کنید")]
-        [EmailAddress(ErrorMessage = "لطفا ایمیل را بدرستی وارد کنید")]
-        [Display(Name = "ایمیل")]
+        [EmailAddress(ErrorMessage = "Please enter valid {0}")]
+        [Required(ErrorMessage = "Please enter {0}")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
     }
 }

@@ -39,6 +39,12 @@ namespace AffiliateProfile.Controllers
             return View();
         }
 
+        /// <summary>
+        /// show dashboard items as ajax json by DateTime parameter
+        /// </summary>
+        /// <param name="filterValue"></param>
+        /// <returns></returns>
+
         public JsonResult GetDashboardActivities(int filterValue = 0)
         {
             string affiliateCode = "";
@@ -96,6 +102,11 @@ namespace AffiliateProfile.Controllers
                 Conversion = ViewBag.Conversion
             });
         }
+
+        /// <summary>
+        /// manage user profile
+        /// </summary>
+        /// <returns></returns>
 
         public async Task<IActionResult> Profile()
         {

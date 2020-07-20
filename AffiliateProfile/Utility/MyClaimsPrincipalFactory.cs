@@ -14,6 +14,11 @@ namespace AffiliateProfile.Utility
             : base(userManager, roleManager, optionsAccessor)
         { }
 
+        /// <summary>
+        /// Add new claim in user cookie
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         protected override async Task<ClaimsIdentity> GenerateClaimsAsync(ApplicationUser user)
         {
             var claims = await base.GenerateClaimsAsync(user);

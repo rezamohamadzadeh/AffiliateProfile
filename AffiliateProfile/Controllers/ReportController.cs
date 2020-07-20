@@ -27,6 +27,13 @@ namespace AffiliateProfile.Controllers
             _mapper = mapper;
             _uow = uow;
         }
+
+        /// <summary>
+        /// get report filter
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+
         public IActionResult AffiliateSellPrintPage(SellReportDto model)
         {
             TempData["StartDate"] = model.StartDate;
@@ -36,12 +43,17 @@ namespace AffiliateProfile.Controllers
 
             return View();
         }
+
+
         public IActionResult ConversionRatePrintPage()
         {
-
             return View();
         }
 
+        /// <summary>
+        /// get affiliate sell for report
+        /// </summary>
+        /// <returns></returns>
         public ActionResult AffiliateSell()
         {
             try
@@ -88,24 +100,6 @@ namespace AffiliateProfile.Controllers
                         break;
                 }
 
-                //if (model.StartDate != null && model.EndDate != null)
-                //{
-                //    sellRepo = _uow.SellRepo.Get(d => d.AffiliateCode == affiliates.Code && d.CreateAt >= model.StartDate && d.CreateAt <= model.EndDate);
-                //}
-                //else if (model.StartDate != null)
-                //{
-                //    sellRepo = _uow.SellRepo.Get(d => d.AffiliateCode == affiliates.Code && d.CreateAt >= model.StartDate);
-                //}
-                //else if (model.EndDate != null)
-                //{
-                //    sellRepo = _uow.SellRepo.Get(d => d.AffiliateCode == affiliates.Code && d.CreateAt <= model.EndDate);
-                //}
-                //else
-                //{
-                //    sellRepo = _uow.SellRepo.Get(d => d.AffiliateCode == affiliates.Code);
-                //}
-
-
                 var sumSell = sellRepo.Sum(d => d.Price);
 
                 stiReport["SumSell"] = sumSell.ToString("N0");
@@ -121,6 +115,11 @@ namespace AffiliateProfile.Controllers
 
 
         }
+
+        /// <summary>
+        /// get affiliate ConversionRate as Pie Chart for report
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ConversionRate()
         {
             StiReport stiReport = new StiReport();
@@ -142,6 +141,10 @@ namespace AffiliateProfile.Controllers
             return View();
         }
 
+        /// <summary>
+        /// for display report views
+        /// </summary>
+        /// <returns></returns>
         public IActionResult ViewerEvent()
         {
             return StiNetCoreViewer.ViewerEventResult(this);

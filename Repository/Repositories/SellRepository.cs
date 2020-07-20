@@ -15,6 +15,20 @@ namespace Repository.Repositories
         public SellRepository(ApplicationDbContext Db) : base(Db)
         { }
 
+
+        /// <summary>
+        /// get affiliate sells in listview datatable
+        /// </summary>
+        /// <param name="draw"></param>
+        /// <param name="length"></param>
+        /// <param name="sortColumn"></param>
+        /// <param name="sortColumnDirection"></param>
+        /// <param name="searchValue"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="recordsTotal"></param>
+        /// <param name="userEmail"></param>
+        /// <returns></returns>
         public List<Tb_Sell> Filter(string draw,
            string length,
            string sortColumn,
@@ -117,7 +131,19 @@ namespace Repository.Repositories
             return result;
         }
 
-
+        /// <summary>
+        /// get Affiliate Customers
+        /// </summary>
+        /// <param name="draw"></param>
+        /// <param name="length"></param>
+        /// <param name="sortColumn"></param>
+        /// <param name="sortColumnDirection"></param>
+        /// <param name="searchValue"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="recordsTotal"></param>
+        /// <param name="userEmail"></param>
+        /// <returns>Only Email</returns>
         public List<string> AffiliateCustomers(string draw,
            string length,
            string sortColumn,
@@ -180,6 +206,14 @@ namespace Repository.Repositories
             return result;
         }
 
+        /// <summary>
+        /// get Dashboard Values
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="UserId"></param>
+        /// <param name="affiliateCode"></param>
+        /// <param name="filterValue"></param>
+        /// <returns></returns>
         public IEnumerable<Tb_Sell> GetSellOnDashboard(int count, string UserId,ref string affiliateCode, int filterValue = 0)
         {
             IQueryable<Tb_Sell> query = _dbset;

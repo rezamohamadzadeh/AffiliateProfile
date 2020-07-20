@@ -22,4 +22,5 @@ namespace AffiliateProfile.Models.AccountViewModels
 
         public string Code { get; set; }
     }
+    
 }

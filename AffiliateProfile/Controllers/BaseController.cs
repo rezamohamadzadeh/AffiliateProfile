@@ -8,6 +8,9 @@ namespace AffiliateProfile.Controllers
 {
     public class BaseController : Controller
     {
+        /// <summary>
+        /// custom messages for show in view
+        /// </summary>
         protected const string SuccessMessage = "Your information submited successfully";
         protected const string SuccessAddMessage = "Your information added successfully";
         protected const string SuccessDeleteMessage = "Your information deleted successfully";
@@ -20,6 +23,11 @@ namespace AffiliateProfile.Controllers
         protected const string SuccessPaymentMessage = "Your payment did successfully";
         protected const string ErrorSendEmailMessage = "Your email failed";
         
+
+        /// <summary>
+        /// get ModelState errors
+        /// </summary>
+        /// <param name="result"></param>
         protected void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
@@ -27,6 +35,10 @@ namespace AffiliateProfile.Controllers
                 ModelState.AddModelError(string.Empty, error.Description);
             }
         }
+
+        /// <summary>
+        /// check if dataTable is null 
+        /// </summary>
         private static DataTableModel _dataTableModel;
         public static DataTableModel DataTableModel
         {
@@ -69,6 +81,9 @@ namespace AffiliateProfile.Controllers
         }
         
     }
+    /// <summary>
+    /// datatable properties
+    /// </summary>
     public class AjaxResult
     {
         public string draw { get; set; }
