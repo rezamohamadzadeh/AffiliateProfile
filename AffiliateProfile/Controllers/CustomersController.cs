@@ -25,10 +25,11 @@ namespace AffiliateProfile.Controllers
         {
             return View();
         }
-        /// <summary>
-        /// show affiliate customers in view as Ajax Json Result
+        //// <summary>
+        /// show list view in View as Datatable jquery
         /// </summary>
         /// <returns></returns>
+
         public IActionResult List()
         {
             try

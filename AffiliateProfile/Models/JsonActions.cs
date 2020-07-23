@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AffiliateProfile.Models
 {
+    /// <summary>
+    /// return json custom result
+    /// </summary>
     public class JsonActions : ControllerBase
     {
         private JsonResultContent jsonResult;
@@ -18,6 +21,7 @@ namespace AffiliateProfile.Models
                 return jsonResult;
             }
         }
+
         public JsonResultContent SuccessResult(string message = null)
         {
             JsonResultContent.StatusCode = JsonStatusCode.Success;

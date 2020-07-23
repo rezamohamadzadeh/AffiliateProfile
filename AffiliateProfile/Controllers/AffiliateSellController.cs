@@ -24,6 +24,11 @@ namespace AffiliateProfile.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// show list view in View as Datatable jquery
+        /// </summary>
+        /// <returns></returns>
+
         public IActionResult List()
         {
             try
