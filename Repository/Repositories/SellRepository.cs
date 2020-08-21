@@ -236,7 +236,9 @@ namespace Repository.Repositories
                 query = query.Where(d => d.CreateAt > DateTime.Now.AddDays(filterValue));
             }
 
-            query.Where(d => d.AffiliateCode == affiliatCode.Code).Take(count).ToList();
+            query = query.Where(d => d.AffiliateCode == affiliatCode.Code);
+
+            query.Take(count).ToList();
 
             return query;
         }

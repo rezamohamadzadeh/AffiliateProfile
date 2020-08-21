@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace AffiliateProfile.Controllers
 {
-    [Authorize(Roles = "Affiliate")]
+    [Authorize]
     public class AccountController : BaseController
     {
         private readonly UserManager<ApplicationUser> _userManager;
