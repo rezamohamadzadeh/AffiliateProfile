@@ -238,9 +238,9 @@ namespace Repository.Repositories
 
             query = query.Where(d => d.AffiliateCode == affiliatCode.Code);
 
-            query.Take(count).ToList();
+            query = query.Take(count);
 
-            return query;
+            return query.ToList();
         }
     }
 }
